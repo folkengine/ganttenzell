@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+function check_asdf {
+  if ! command -v asdf >/dev/null 2>&1; then
+      echo "Please install asdf: https://asdf-vm.com/"
+      exit 1
+  fi
+
+  if ! asdf plugin list | grep -q python; then
+      echo "Installing asdf python plugin."
+      asdf plugin add python
+  fi
+
+  asdf install
+}
+
+function create_venv {
+  DIR_PATH="./venv"
+
+  if [ ! -d "$DIR_PATH" ]; then
+    FILE_PATH=".tool-versions"
+
+    if [ -f "$FILE_PATH" ]; then
+        python_version=$(grep python $FILE_PATH | awk '{print $2}')
+    else
+        python_version=$(grep python "../${FILE_PATH}" | awk '{print $2}')
+    fi
+
+    asdf local python "$python_version"
+
+    reversed_string=$(echo "$python_version" | rev)
+    python_major_version=$(echo "$reversed_string" | cut -d. -f2- | rev)
+    echo "$python_major_version"
+
+    # Create a virtual environment using the specified Python version
+    python"$python_major_version" -m venv venv
+
+    # Activate the virtual environment
+    source venv/bin/activate
+
+    python --version
+  else
+    # Activate the virtual environment
+    source venv/bin/activate
+
+    python --version
+    echo "${DIR_PATH} already exists."
+  fi
+}
+
+check_asdf
+create_venv
