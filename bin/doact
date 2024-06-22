@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+DIR_PATH="./.venv"
+
+if [ ! -d "$DIR_PATH" ]; then
+   echo "No virtual environment. Please run bin/dosetup"
+ else
+   source .venv/bin/activate
+   echo "venv activated. Run 'deactivate' to exit venv."
+ fi

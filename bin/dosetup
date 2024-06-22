@@ -15,7 +15,7 @@ function check_asdf {
 }
 
 function create_venv {
-  DIR_PATH="./venv"
+  DIR_PATH="./.venv"
 
   if [ ! -d "$DIR_PATH" ]; then
     FILE_PATH=".tool-versions"
@@ -33,15 +33,15 @@ function create_venv {
     echo "$python_major_version"
 
     # Create a virtual environment using the specified Python version
-    python"$python_major_version" -m venv venv
+    python"$python_major_version" -m venv .venv
 
     # Activate the virtual environment
-    source venv/bin/activate
+    source .venv/bin/activate
 
     python --version
   else
     # Activate the virtual environment
-    source venv/bin/activate
+    source .venv/bin/activate
 
     python --version
     echo "${DIR_PATH} already exists."
