@@ -10,3 +10,10 @@
     
 [Henry Gantt](https://en.wikipedia.org/wiki/Henry_Gantt) - [Organizing for Work](https://archive.org/details/organizingforwor00gant), 1919
 
+## Dependencies
+
+* [Plotly](https://plotly.com/python/)
+
+## Information
+
+* [Structuring Your Project](https://docs.python-guide.org/writing/structure/)
