@@ -8,12 +8,12 @@
     },
     {
       "limit": 11000.0,
-      "numberPhases": 3,
+      "numberPhases": 1,
       "startPeriod": 1020
     },
     {
       "limit": 6000.0,
-      "numberPhases": 3,
+      "numberPhases": 1,
       "startPeriod": 25140
     }
   ],
