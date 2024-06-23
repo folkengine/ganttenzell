@@ -10,6 +10,21 @@
     
 [Henry Gantt](https://en.wikipedia.org/wiki/Henry_Gantt) - [Organizing for Work](https://archive.org/details/organizingforwor00gant), 1919
 
+## Setup
+
+Setup scripts are avaialable in the `bin` directory. `bin/dosetup` does the
+following:
+
+* checks that asdf is installed 
+* installs the python version specified in the .tool-versions file
+* creates a virtual environment
+* activates that virtual environment
+* installs the depenedcies in the `requirements.txt` file
+
+`bin/doact` activates that virtual environment.
+
+`bin/dofreeze` updates the `requirements.txt` file with the current dependencies.
+
 ## Dependencies
 
 * [Plotly](https://plotly.com/python/)

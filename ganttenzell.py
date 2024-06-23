@@ -13,6 +13,9 @@ def main():
     # Usage
     data = read_json_file('data/case_one.json')
     print(data["chargingSchedulePeriod"])
+
+    profiles = read_json_file('data/case_one_profiles.json')
+    print(profiles)
     #
     # limits = []
     # start_period = []
