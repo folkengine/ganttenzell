@@ -48,5 +48,10 @@ function create_venv {
   fi
 }
 
+function install_reqs {
+  pip install -r requirements.txt
+}
+
 check_asdf
 create_venv
+install_reqs
