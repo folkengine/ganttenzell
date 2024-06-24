@@ -2,41 +2,24 @@ import json
 import plotly.express as px
 import plotly.figure_factory as ff
 
-
-def read_json_file(file_path):
-    with open(file_path, 'r') as json_file:
-        data = json.load(json_file)
-    return data
+import ocpp.utils
+import ocpp.smart_charging
 
 
 def main():
     # Usage
-    data = read_json_file('data/case_one.json')
+    data = ocpp.utils.read_json_file('data/case_one.json')
+
     print(data["chargingSchedulePeriod"])
 
-    profiles = read_json_file('data/case_one_profiles.json')
+    profiles = ocpp.utils.read_json_file('data/case_one_profiles.json')
     print(profiles)
-    #
-    # limits = []
-    # start_period = []
-    #
-    # for period in data["chargingSchedulePeriod"]:
-    #     limits.append(period["limit"])
-    #     start_period.append(period["startPeriod"])
-    #
-    # fig = px.bar(x=start_period, y=limits)
-    # fig.write_html('composite.html', auto_open=True)
+
+    # Create a ProcessedData object
+    processed_data = ocpp.smart_charging.ProcessedData(data, profiles)
 
     # Prepare data for Gantt chart
-    gantt_data = []
-    for period in data["chargingSchedulePeriod"]:
-        task = {
-            'Task': f'Charging period {period["startPeriod"]}',
-            'Start': period["startPeriod"],
-            'Finish': period["startPeriod"] + period["limit"],
-            'Resource': 'Charging'
-        }
-        gantt_data.append(task)
+    gantt_data = processed_data.process_composite_schedule_as_ganntt()
 
     # Create Gantt chart
     fig = ff.create_gantt(gantt_data, index_col='Resource', show_colorbar=True, group_tasks=True)
