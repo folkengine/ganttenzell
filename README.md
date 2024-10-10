@@ -3,6 +3,8 @@
 
 # Ganttenzell
 
+# WIP
+
 ![ganttenzell.jpg](docs/ganttenzell.jpg)
 
     1. Measure activities by the amount of time needed to complete them;
